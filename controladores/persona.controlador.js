@@ -13,7 +13,7 @@ exports.crear_persona = function (req, res) {
         if (err) {
             return next(err);
         }
-        res.send('Persona creada exitosamente')
+        res.json(persona)
     })
 };
 
@@ -21,15 +21,16 @@ exports.crear_persona = function (req, res) {
 exports.detalles_persona = function (req, res) {
     Persona.findById(req.params.id, function (err, persona) {
         if (err) return next(err);
-        res.send(persona);
+        res.json(persona);
     })
 };
 
 //Utiliza el id que se le envía en el request, para encontrar y actualizar una persona existente
 exports.actualizar_persona = function (req, res) {
-    Persona.findOneAndUpdate(req.params.id, {$set: req.body}, function (err, product) {
+    Persona.findOneAndUpdate(req.params.id, {$set: req.body}, {new : true}, function (err, persona) {
         if (err) return next(err);
-        res.send('Persona actualizada.');
+        //res.send('Persona actualizada.');
+        res.json(persona);
     });
 };
 

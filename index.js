@@ -20,6 +20,7 @@ let mongoDB = process.env.MONGODB_URI || dev_db_url;
 mongoose.connect(mongoDB, { useNewUrlParser: true },);
 mongoose.Promise = global.Promise;
 let db = mongoose.connection;
+mongoose.set('useFindAndModify', false);
 db.on('error', console.error.bind(console, 'Error de conexion con MongoDB:'));
 
 //Iniciar el servidor
