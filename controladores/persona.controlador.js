@@ -1,5 +1,15 @@
 const Persona = require('../modelos/persona.modelo'); // Importamos el modelo
 
+exports.obtener_todo = function(req, res){
+    Persona.find({}).sort({updatedAt: -1}).exec(function(err, personas){
+        if (err) return next(err);
+        res.json(personas);
+    });
+    /*Persona.find({}, function(err, personas){
+        res.json(personas);
+    }).sort('-updatedAt');*/
+};
+
 exports.crear_persona = function (req, res) {
     // Se crea una nueva instancia del modelo Persona, siguiendo el esquema que se había definido
     let persona = new Persona(

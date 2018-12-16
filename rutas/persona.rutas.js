@@ -4,6 +4,8 @@ const router = express.Router();// Middleware para gestionar las rutas
 // Importamos el controlador
 const persona_controlador = require('../controladores/persona.controlador');
 
+router.get('/', persona_controlador.obtener_todo);
+
 //CRUD
 //Crear
 router.post('/crear', persona_controlador.crear_persona);
