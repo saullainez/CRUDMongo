@@ -9,6 +9,13 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use('/personas', persona); // Usamos las rutas
 
+app.use(express.static("public")); 
+
+var path = require("path");
+app.get("/", function(req, res){
+    res.sendFile(path.join(__dirname+'/vistas/index.html'));
+});
+
 // Configuración de la conexión con la base de datos
 const mongoose = require('mongoose');
 /*String de conexión con la base de datos creada en mLab.
